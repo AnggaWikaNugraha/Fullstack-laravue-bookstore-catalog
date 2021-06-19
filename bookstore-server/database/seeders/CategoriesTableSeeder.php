@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -44,7 +47,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => Carbon\Carbon::now(),
             ];
         }
-        DB::table('categories')->insert($categories);
+        \DB::table('categories')->insert($categories);
 
     }
 }

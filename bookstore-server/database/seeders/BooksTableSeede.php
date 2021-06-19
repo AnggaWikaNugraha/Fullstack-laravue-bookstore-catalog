@@ -13,7 +13,7 @@ class BooksTableSeede extends Seeder
      */
     public function run()
     {
-            DB::table('books')->insert([
+            \DB::table('books')->insert([
                 'title' => 'C++ High Performance',
                 'slug' => 'c++-high-performance',
                 'description' => 'Write code that scales across CPU registers, multi-core, and machine clusters',
