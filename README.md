@@ -1,4 +1,4 @@
-# Laravue bookstore-catalog sisi users
+# Laravue web bookstore-catalog sisi users
 
 ## stack :
 - laravel api
