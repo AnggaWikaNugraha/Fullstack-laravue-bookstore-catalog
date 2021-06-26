@@ -14,16 +14,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::get('nama', function () {
+    return 'Namaku, Larashop API';
+});
+   
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+   
+Route::get('category/{id}', function ($id) {
     
-//     return $request->user();
+    $categories = [
+        1 => 'Programming',
+        2 => 'Desain Grafis',
+        3 => 'Jaringan Komputer',
+    ];
+    $id = (int) $id;
 
-// });
+    if($id==0) return 'Silakan pilih kategori';
+    else return 'Anda memilih kategori '.$categories[$id];
 
-   
-Route::get('category', function () {
-   
-    return 'Anda memilih kategori <b>';
+});
 
+Route::get('book/{id}', function () {
+    return 'buku angka';
+})->where('id', '[0-9]+')->name('book');
+
+Route::get('book/{title}', function ($title) {
+    return 'buku abjad';
+})->where('title', '[A-Za-z]+');
+
+Route::prefix('v1')->group(function () {
+    Route::get('books', function () {
+        return 'books';
+    });
+    Route::get('categories', function () {
+        return 'categories';
+    });
+});
+
+Route::domain('{category}.larashop.id')->group(function () {
+    Route::get('book/{id}', function ($category, $id) {
+        return 'buku angka';
+    });
 });
    
