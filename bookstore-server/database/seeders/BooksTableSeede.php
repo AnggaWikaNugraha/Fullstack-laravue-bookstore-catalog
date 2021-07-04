@@ -53,7 +53,16 @@ class BooksTableSeede extends Seeder
                 'price' => 75000,
                 'weight' => 0.5,
                 'status' => 'PUBLISH',
-            ]);
-           
+            ],[
+                'title' => 'ReactJs',
+                'slug' => 'mastering-postgresql-10',
+                'description' => 'Master the capabilities of PostgreSQL 10 to efficiently manage and maintain your database',
+                'author' => 'Hans-Jürgen Schönig',
+                'publisher' => 'Packtpub',
+                'cover' => 'mastering-postgresql-10.png',
+                'price' => 90000,
+                'weight' => 0.5,
+                'status' => 'PUBLISH',
+            ],);
     }
 }

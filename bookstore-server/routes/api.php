@@ -66,4 +66,4 @@ Route::domain('{category}.larashop.id')->group(function () {
 // callback controller
 Route::get('buku/{judul}',[App\Http\Controllers\BookController::class, 'cetak'] );
 
-// lanjut query builder
+// lanjut ORM eloquint
