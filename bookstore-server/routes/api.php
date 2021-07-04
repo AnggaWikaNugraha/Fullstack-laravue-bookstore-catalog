@@ -15,14 +15,9 @@ use App\Http\Controllers\BookController;
 |
 */
 
-Route::get('nama', function () {
-    return 'Namaku, Larashop API';
-});
-   
+Route::get('nama', function () { return 'Namaku, Larashop API';});
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')->get('/user', function (Request $request) {return $request->user();});
 
 Route::middleware(['throttle:10,1'])->group(function () {
    
@@ -46,27 +41,25 @@ Route::get('category/{id}', function ($id) {
 
 });
 
-Route::get('book/{id}', function () {
-    return 'buku angka';
-})->where('id', '[0-9]+')->name('book');
+Route::get('book/{id}', function () { return 'buku angka' ;})->where('id', '[0-9]+')->name('book');
 
-Route::get('book/{title}', function ($title) {
-    return 'buku abjad';
-})->where('title', '[A-Za-z]+');
+Route::get('book/{title}', function ($title) {return 'buku abjad';})->where('title', '[A-Za-z]+');
 
+// routing books
 Route::prefix('v1')->group(function () {
-    Route::get('books', function () {
-        return 'books';
-    });
-    Route::get('categories', function () {
-        return 'categories';
-    });
+    
+    Route::get('books', function () {return 'books';});
+    
+    Route::get('categories', function () {return 'categories';});
+
+    Route::get('books', [App\Http\Controllers\BookController::class, 'index']);
+
 });
 
 Route::domain('{category}.larashop.id')->group(function () {
-    Route::get('book/{id}', function ($category, $id) {
-        return 'buku angka';
-    });
+   
+    Route::get('book/{id}', function ($category, $id) { return 'buku angka'; });
+
 });
 
 // callback controller
