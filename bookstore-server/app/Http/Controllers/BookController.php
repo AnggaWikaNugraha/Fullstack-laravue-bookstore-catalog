@@ -18,4 +18,11 @@ class BookController extends Controller
         
         return $books;
     }
+
+    public function view($id)
+    {
+        $book = DB::select('select * from books where id = ?', [ $id ]);
+        
+        return $book;
+    }
 }

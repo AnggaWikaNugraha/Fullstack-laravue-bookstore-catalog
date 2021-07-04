@@ -42,17 +42,15 @@ Route::get('category/{id}', function ($id) {
 });
 
 Route::get('book/{id}', function () { return 'buku angka' ;})->where('id', '[0-9]+')->name('book');
-
 Route::get('book/{title}', function ($title) {return 'buku abjad';})->where('title', '[A-Za-z]+');
 
 // routing books
 Route::prefix('v1')->group(function () {
     
-    Route::get('books', function () {return 'books';});
-    
     Route::get('categories', function () {return 'categories';});
-
+    Route::get('books', function () {return 'books';});
     Route::get('books', [App\Http\Controllers\BookController::class, 'index']);
+    Route::get('book/{id}', [App\Http\Controllers\BookController::class, 'view'])->where('id', '[0-9]+');
 
 });
 
