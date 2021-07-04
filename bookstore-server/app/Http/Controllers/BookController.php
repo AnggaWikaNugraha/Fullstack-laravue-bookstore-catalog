@@ -38,4 +38,11 @@ class BookController extends Controller
         return $affected;
     }
 
+    public function delete()
+    {
+        $deleted = DB::delete('delete from books where id=?', [8]);
+
+        return $deleted;
+    }
+
 }
