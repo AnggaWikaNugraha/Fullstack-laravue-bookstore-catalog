@@ -28,7 +28,7 @@ class BookController extends Controller
         // }
 
         // eloquint
-        $books = \App\Models\Book::all();
+        // $books = \App\Models\Book::all();
         // foreach ($books as $book) {
         //     echo $book->title;
         // }
@@ -50,8 +50,25 @@ class BookController extends Controller
 
         // ambil 2 items buku secara random
         // return $books->random(2)->all();
+
+        // ambil record pertama
+        // return $first_book = $books->first();
+
+        // ambil nilai dari atribut title pada record pertama
+        // return $title = $books->first()->value('title');
+
+        // return $book = \App\Models\Book::find(1);
+        // return $books = \App\Models\Book::find([1, 2, 3]);
+
+        // return $book = \App\Models\Book::findOrFail(1);
+        // return $book = \App\Models\Book::where('status', '=', 'PUBLISH')->firstOrFail();
+
+        // $count = \App\Book::count();
+        // $max_price = \App\Book::max('price'); // nilai maksimal
+        // $avg_price = \App\Book::avg('price'); // rata-rata
+
         
-        return $books;
+        // return $books;
     }
 
     public function view($id)
@@ -71,9 +88,15 @@ class BookController extends Controller
         // $book = DB::insert('insert into books (title, slug) values (?, ?)', ['Learn CJS', 'learn-cjs']);
 
          // query builder
-        $book = DB::table('books')->insert(
-            ['title' => 'Learn DJS', 'slug' => 'learn-djs']
-        );
+        // $book = DB::table('books')->insert(
+        //     ['title' => 'Learn DJS', 'slug' => 'learn-djs']
+        // );
+
+        // eloquent
+        $book = new \App\Models\Book;
+        $book->title = 'Learn ZJS';
+        $book->slug = 'learn-zjs';
+        $book->save();
 
         return $book;
     }
@@ -83,12 +106,23 @@ class BookController extends Controller
         // raw query
         // $affected = DB::update('update books set price = ? where id = ?', [5000, 3]);
 
-         // query builder
-        $affected = DB::table('books')
-                                ->where('id', 3)
-                                ->update(['price' => 8000]);
+        // query builder
+        // $affected = DB::table('books')
+        //             ->where('id', 3)
+        //             ->update(['price' => 8000]);
 
-        return $affected;
+        // eloquent
+        // $book = \App\Models\Book::find(3);
+        // $book->price = 125000;
+        // $book->save();
+
+        // attau bisa juga 
+        $book = \App\Models\Book::where('id', 3)
+            ->update([
+            'price' => 25000
+        ]);
+
+        return $book;
     }
 
     public function delete()
@@ -97,9 +131,21 @@ class BookController extends Controller
         // $deleted = DB::delete('delete from books where id=?', [8]);
 
         // query builder
-        $deleted = DB::table('books')->where('id', '=', 14)->delete();
+        // $deleted = DB::table('books')->where('id', '=', 14)->delete();
 
-        return $deleted;
+        // eloquent
+
+        $book = \App\Models\Book::find(3);
+        $book->delete();
+
+        // delete from books where id = 2
+        // \App\Book::destroy(2);
+        // delete from books where id = 2 or 5
+        // \App\Book::destroy([2,5]);
+        // delete from books where id = 2
+        // \App\Book::where('id', 2)->delete()
+
+        return $book;
     }
 
 }
