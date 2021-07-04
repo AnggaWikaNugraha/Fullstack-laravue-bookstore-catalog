@@ -25,4 +25,10 @@ class BookController extends Controller
         
         return $book;
     }
+
+    public function insert()
+    {
+        return DB::insert('insert into books (title, slug) values (?, ?)', ['Learn AngularJS', 'learn-angulartjs']);;
+    }
+
 }
