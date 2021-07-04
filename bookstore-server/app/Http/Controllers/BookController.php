@@ -14,33 +14,66 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = DB::select('select * from books');
+        // raw query
+        // $books = DB::select('select * from books');
+
+        // query builder
+        $books = DB::table('books')->get();
+
+        // mereturn collection data
+        // select id, title from books
+        // $books = DB::table('books')->pluck('id', 'title');
+        // foreach ($books as $id => $title) {
+        //     echo $title;
+        // }
         
         return $books;
     }
 
     public function view($id)
     {
+        // raw query
         $book = DB::select('select * from books where id = ?', [ $id ]);
+
+        // query builder
+        // $book = DB::table('books')->where('id', $id)->first();
         
         return $book;
     }
 
     public function insert()
     {
-        return DB::insert('insert into books (title, slug) values (?, ?)', ['Learn AngularJS', 'learn-angulartjs']);;
+        // raw query
+        // $book = DB::insert('insert into books (title, slug) values (?, ?)', ['Learn CJS', 'learn-cjs']);
+
+         // query builder
+        $book = DB::table('books')->insert(
+            ['title' => 'Learn DJS', 'slug' => 'learn-djs']
+        );
+
+        return $book;
     }
 
     public function update()
     {
-        $affected = DB::update('update books set price = ? where id = ?', [5000, 3]);
+        // raw query
+        // $affected = DB::update('update books set price = ? where id = ?', [5000, 3]);
+
+         // query builder
+        $affected = DB::table('books')
+                                ->where('id', 3)
+                                ->update(['price' => 8000]);
 
         return $affected;
     }
 
     public function delete()
     {
-        $deleted = DB::delete('delete from books where id=?', [8]);
+        // raw query
+        // $deleted = DB::delete('delete from books where id=?', [8]);
+
+        // query builder
+        $deleted = DB::table('books')->where('id', '=', 14)->delete();
 
         return $deleted;
     }
