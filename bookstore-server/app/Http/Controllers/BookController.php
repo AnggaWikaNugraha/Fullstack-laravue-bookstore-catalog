@@ -18,7 +18,7 @@ class BookController extends Controller
         // $books = DB::select('select * from books');
 
         // query builder
-        $books = DB::table('books')->get();
+        // $books = DB::table('books')->get();
 
         // mereturn collection data
         // select id, title from books
@@ -26,6 +26,30 @@ class BookController extends Controller
         // foreach ($books as $id => $title) {
         //     echo $title;
         // }
+
+        // eloquint
+        $books = \App\Models\Book::all();
+        // foreach ($books as $book) {
+        //     echo $book->title;
+        // }
+
+        // $books = \App\Models\Book::where('status', 'PUBLISH')
+        //     ->orderBy('title', 'asc')
+        //     ->limit(10)
+        //     ->get();
+
+        // jangan ambil buku yang statusnya draft (REJECT)
+        // $published_books = $books->reject(function ($book) {
+        //     return $book->status=='DRAFT';
+        // });
+
+        // ambil buku yang statusnya publish
+        // $published_books = $books->filter(function ($book) {
+        //     return $book->status=='PUBLISH';
+        // });
+
+        // ambil 2 items buku secara random
+        // return $books->random(2)->all();
         
         return $books;
     }
