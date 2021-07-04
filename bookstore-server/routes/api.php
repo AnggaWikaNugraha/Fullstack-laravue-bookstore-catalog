@@ -52,6 +52,7 @@ Route::prefix('v1')->group(function () {
     Route::get('books', [App\Http\Controllers\BookController::class, 'index']);
     Route::get('book/{id}', [App\Http\Controllers\BookController::class, 'view'])->where('id', '[0-9]+');
     Route::get('book/insert', [App\Http\Controllers\BookController::class, 'insert']);
+    Route::get('book/update', [App\Http\Controllers\BookController::class, 'update']);
 
 });
 

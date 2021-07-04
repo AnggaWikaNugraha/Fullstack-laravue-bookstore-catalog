@@ -31,4 +31,11 @@ class BookController extends Controller
         return DB::insert('insert into books (title, slug) values (?, ?)', ['Learn AngularJS', 'learn-angulartjs']);;
     }
 
+    public function update()
+    {
+        $affected = DB::update('update books set price = ? where id = ?', [5000, 3]);
+
+        return $affected;
+    }
+
 }
